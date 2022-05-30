@@ -1,17 +1,17 @@
 import { Request, Response } from "express";
 import fs from "fs";
+import path from "path";
 
 export default class Video {
 
-    public static async stream(req : Request, res : Response) {
+    public static async stream(file: string, req : Request, res : Response) {
         const range = req.headers.range;
         if (!range) {
             res.status(400).send("Requires Range header");
             return;
         }
 
-        const videoPath = "video/video.mp4";
-        const videoSize = fs.statSync("video/video.mp4").size;
+        const videoSize = fs.statSync(file).size;
 
         const CHUNK_SIZE = 10 ** 6; // 1MB
         const start = Number(range.replace(/\D/g, ""));
@@ -26,7 +26,7 @@ export default class Video {
         };
 
         res.writeHead(206, headers);
-        const videoStream = fs.createReadStream(videoPath, { start, end });
+        const videoStream = fs.createReadStream(file, { start, end });
         videoStream.pipe(res);
     }
 

@@ -12,13 +12,21 @@
         max-width: 100%;
         background-color: rgb(14, 14, 14);
         padding-top: 10%;
-        padding-left: 35%;
+        padding-left: 5rem;
     }
+    h1 {
+        color: white;
+        font-size: 3em;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1rem;
+    }
+
 </style>
 </head>
 <body>
-    <video id="videoPlayer" width="50%" controls muted="muted" autoplay>
-        <source src="/video" type="video/mp4" />
+    <h1>Streaming static files</h1>
+    <video id="videoPlayer" width="90%" controls muted="muted" autoplay>
+        <source src="/video/video.mp4" type="video/mp4" />
     </video>
 </body>
 </html>
