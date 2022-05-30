@@ -49,9 +49,10 @@ export default class WebServer {
 
         if(FileFormatUtils.isVideo(fileType)) {
             return Video.stream(file,req,res);
-            return;
         }
 
+        res.setHeader("Content-Type", type);
+        res.sendFile(file);
         
 
 
